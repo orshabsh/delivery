@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подвоз учащихся - Бабиничская средняя школа Оршанского района</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>🏫 Бабиничская средняя школа</h1>
+                <p>Организация подвоза учащихся</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">О подвозе</a></li>
+                    <li><a href="#routes">Маршруты</a></li>
+                    <li><a href="#schedule">Расписание</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Главная секция -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Добро пожаловать!</h2>
+                <p>Информационный портал организации подвоза учащихся государственного учреждения образования "Бабиничская средняя школа Оршанского района"</p>
+                <a href="#routes" class="btn">Посмотреть маршруты</a>
+            </div>
+        </section>
+
+        <!-- О подвозе -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>О системе подвоза</h2>
+                <div class="about-content">
+                    <div class="info-card">
+                        <h3>🚌 Безопасность</h3>
+                        <p>Все транспортные средства проходят регулярный технический осмотр и оснащены необходимыми средствами безопасности.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>⏰ Пунктуальность</h3>
+                        <p>Чёткое соблюдение расписания движения транспорта по всем маршрутам.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>👨‍👩‍👧‍👦 Комфорт</h3>
+                        <p>Удобные автобусы с местами для всех учащихся, проживающих в отдалённых населённых пунктах.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>📋 Документация</h3>
+                        <p>Организация подвоза осуществляется в соответствии с нормативными правовыми актами Республики Беларусь.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Карта маршрутов -->
+        <section id="routes" class="routes">
+            <div class="container">
+                <h2>Карта маршрутов подвоза</h2>
+                <p class="section-desc">Интерактивная карта с основными маршрутами подвоза учащихся</p>
+                
+                <div class="map-controls">
+                    <button class="route-btn active" data-route="all">Все маршруты</button>
+                    <button class="route-btn" data-route="route1">Маршрут 1</button>
+                    <button class="route-btn" data-route="route2">Маршрут 2</button>
+                    <button class="route-btn" data-route="route3">Маршрут 3</button>
+                </div>
+
+                <div id="map"></div>
+
+                <div class="route-info">
+                    <h3>Информация о маршрутах</h3>
+                    <div class="route-details">
+                        <div class="route-item" data-route="route1">
+                            <h4>🚌 Маршрут №1</h4>
+                            <p><strong>Направление:</strong> д. Бабиничи → д. Коптевичи → д. Замошье → Школа</p>
+                            <p><strong>Протяжённость:</strong> 12 км</p>
+                            <p><strong>Количество учащихся:</strong> 15 человек</p>
+                            <p><strong>Время в пути:</strong> 25 минут</p>
+                        </div>
+                        <div class="route-item" data-route="route2">
+                            <h4>🚌 Маршрут №2</h4>
+                            <p><strong>Направление:</strong> д. Гришино → д. Сущево → д. Митьково → Школа</p>
+                            <p><strong>Протяжённость:</strong> 15 км</p>
+                            <p><strong>Количество учащихся:</strong> 18 человек</p>
+                            <p><strong>Время в пути:</strong> 30 минут</p>
+                        </div>
+                        <div class="route-item" data-route="route3">
+                            <h4>🚌 Маршрут №3</h4>
+                            <p><strong>Направление:</strong> д. Высокое → д. Липовка → д. Старое Село → Школа</p>
+                            <p><strong>Протяжённость:</strong> 18 км</p>
+                            <p><strong>Количество учащихся:</strong> 20 человек</p>
+                            <p><strong>Время в пути:</strong> 35 минут</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Расписание -->
+        <section id="schedule" class="schedule">
+            <div class="container">
+                <h2>Расписание движения транспорта</h2>
+                
+                <div class="schedule-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Маршрут</th>
+                                <th>Начало движения</th>
+                                <th>Прибытие в школу</th>
+                                <th>Отправление из школы</th>
+                                <th>Окончание маршрута</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Маршрут №1</td>
+                                <td>07:30</td>
+                                <td>07:55</td>
+                                <td>14:30</td>
+                                <td>14:55</td>
+                            </tr>
+                            <tr>
+                                <td>Маршрут №2</td>
+                                <td>07:25</td>
+                                <td>07:55</td>
+                                <td>14:30</td>
+                                <td>15:00</td>
+                            </tr>
+                            <tr>
+                                <td>Маршрут №3</td>
+                                <td>07:20</td>
+                                <td>07:55</td>
+                                <td>14:30</td>
+                                <td>15:05</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="schedule-note">
+                    <p>⚠️ <strong>Обратите внимание:</strong> Расписание может изменяться в зависимости от погодных условий и дорожной обстановки. Следите за объявлениями.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts" class="contacts">
+            <div class="container">
+                <h2>Контактная информация</h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>📍 Адрес</h3>
+                        <p>211000, Витебская область,<br>Оршанский район,<br>д. Бабиничи, ул. Школьная, 1</p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>📞 Телефоны</h3>
+                        <p>Приёмная: +375 (216) XX-XX-XX<br>Зам. директора по учебной работе: +375 (216) XX-XX-XX</p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>✉️ Email</h3>
+                        <p>babinichi.school@example.by</p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>🕐 Режим работы</h3>
+                        <p>Пн-Пт: 8:00 - 17:00<br>Обед: 13:00 - 14:00</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Задать вопрос</h3>
+                    <form id="questionForm">
+                        <input type="text" placeholder="Ваше имя" required>
+                        <input type="email" placeholder="Ваш email" required>
+                        <input type="tel" placeholder="Ваш телефон">
+                        <textarea placeholder="Ваш вопрос" rows="5" required></textarea>
+                        <button type="submit" class="btn">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Государственное учреждение образования "Бабиничская средняя школа Оршанского района"</p>
+            <p>Сайт разработан для организации подвоза учащихся</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
